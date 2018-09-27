@@ -14,7 +14,7 @@ class Clients(models.Model):
 	metro_criteria_id = models.CharField(max_length=200, null=True)
 	most_specific_criteria_id = models.IntegerField(null=True)
 	region_criteria_id = models.CharField(max_length=200, null=True)
-	date = models.DateField(null=True)
+	date = models.CharField(max_length=200, null=True)
 	device = models.CharField(max_length=200, null=True)
 	location_type = models.CharField(max_length=200, null=True)
 	average_position = models.CharField(max_length=200, null=True)
