@@ -1,0 +1,16 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Test Suite</title>
+</head>
+<body>
+	<h1>Campaign Expenditures</h1>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script>
+		d3.json('http://127.0.0.1:8000/api?date=2018-05-09')
+	  .then(function(data) {
+	    console.log(data);
+	   });
+	</script>
+</body>
+</html>
