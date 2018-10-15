@@ -20,13 +20,12 @@ class Clients(models.Model):
 	average_position = models.CharField(max_length=200, null=True)
 	clicks = models.IntegerField(null=True)
 	conversions = models.CharField(max_length=200, null=True)
-	conversion_value = models.CharField(max_length=200, null=True)
+	conversion_value = models.FloatField(null=True)
 	cost = models.IntegerField(null=True)
 	impressions = models.IntegerField(null=True)
 	interactions = models.IntegerField(null=True)
 	interaction_types = models.CharField(max_length=200, null=True)
 	video_views = models.IntegerField(null=True)
-
+	
 	def __str__(self):
 		return self
-
