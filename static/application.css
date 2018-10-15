@@ -1,0 +1,16 @@
+body {
+	display: flex;
+	align-items: center;
+}
+
+.axis .domain {
+  display: none;
+}
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
