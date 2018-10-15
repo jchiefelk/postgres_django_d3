@@ -1,16 +1,17 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Test Suite</title>
+  <title>Data Suite</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script type="text/javascript" src="/static/analytics.js"></script>
+  <link rel="stylesheet" href="/static/application.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link  href="/static/datepicker.css" rel="stylesheet">
+  <script src="/static/datepicker.js"></script>
 </head>
-<body>
-	<h1>Campaign Expenditures</h1>
-	<script src="https://d3js.org/d3.v5.min.js"></script>
-	<script>
-		d3.json('http://127.0.0.1:8000/api?date=2018-05-09')
-	  .then(function(data) {
-	    console.log(data);
-	   });
-	</script>
+<body onload="renderGroupedBarChart()">
+  <div id="groupedchart"></div>
+  <input type="text" class="form-control" data-toggle="datepicker" placeholder="Pick a Date">
 </body>
 </html>
