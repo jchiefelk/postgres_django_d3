@@ -1,0 +1,7 @@
+{
+  "name": "django-postgres-d3 project",
+  "private": true,
+  "dependencies": {
+    "d3": "^5.7.0"
+  }
+}
