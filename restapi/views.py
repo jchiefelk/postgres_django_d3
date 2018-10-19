@@ -1,7 +1,11 @@
 from django.http import JsonResponse
 from restapi.models import Clients
 from rest_framework.decorators import api_view
-from django.db.models import Avg
+from django.db.models import Avg, Max, Min
+import pdb
+
+maxdate = Clients.objects.aggregate(Max('date'))['date__max']
+mindate = Clients.objects.aggregate(Min('date'))['date__min']
 
 @api_view(['GET'])
 def snippet_list(request):
@@ -36,5 +40,7 @@ def snippet_list(request):
     }
 
   return JsonResponse({
-    "data": response 
-  })
+    "data": response,
+    "mindate": mindate,
+    "maxdate": maxdate 
+  });
