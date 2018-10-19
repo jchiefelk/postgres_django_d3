@@ -1,5 +1,4 @@
 from django.db import models
-from datetime import date
 # Create your models here.
 class Clients(models.Model):
 	account_descriptive_name = models.CharField(max_length=200, null=True)
@@ -26,6 +25,6 @@ class Clients(models.Model):
 	interactions = models.IntegerField(null=True)
 	interaction_types = models.CharField(max_length=200, null=True)
 	video_views = models.IntegerField(null=True)
-	
+
 	def __str__(self):
-		return self
+	  return self
