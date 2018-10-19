@@ -1,6 +1,20 @@
 body {
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+}
+
+h1 {
+	font-size: 2rem;
+	margin-left: 4rem;
+}
+
+input {
+	height: 2rem;
+	width: 10rem;
+	position: absolute;
+	top: 1rem;
+	right: 5rem;
+	background-color: 	gainsboro;
 }
 
 .axis .domain {
