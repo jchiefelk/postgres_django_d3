@@ -1,11 +1,10 @@
 // Set the Dimensions
 function renderGroupedBarChart(date) {
   var url;
-
   if(date){
-    url = 'http://127.0.0.1:8000/api?date='+date;
+    url = location.href + 'api?date=' + date;
   } else {
-    url = 'http://127.0.0.1:8000/api'
+    url = location.href + 'api;'
   }
   d3.selectAll("svg > *").remove(); // clear all svg elements before 
   d3.json(url,{
@@ -14,13 +13,32 @@ function renderGroupedBarChart(date) {
       "Content-type": "application/json; charset=UTF-8"
     }
   })
-  .then(function(results) {
+  .then((results) => {
+      keys = [];
+      values = [];
+      var date = '';
 
-      console.log(results);
+      for(var key in results.data) {
+        if(key != 'date') {
+          keys.push(key);
+          values.push(results.data[key].conversion_value__avg);
+        } 
+        if(key = 'date'){
+          date = results.data[key];
+        }
+      }
 
+      var title = 'Averages over all dates';
+      if(date != 'all'){
+        title= 'Averages on ' + date
+      } 
+      $("h1").remove();
+      $('body').prepend("<h1>"+title+"</h1>")
+
+      d3.select("svg").remove();
       var width = 960;
       var height = 500;
-      var svg = d3.select("#groupedchart")
+      var svg = d3.select("#chart")
         .append("svg").attr("width", width).attr("height", height),      
         margin = {top: 20, right: 20, bottom: 30, left: 40},
         width = +svg.attr("width") - margin.left - margin.right,
@@ -30,6 +48,16 @@ function renderGroupedBarChart(date) {
        // console.log(results);
       var parseTime = d3.timeParse("%d-%b-%y");
 
+      var color = d3.scaleOrdinal()
+      .range(["coral", "tomato", "orange"]);
+
+      // Define the div for the tooltip
+      var tooltip = d3.select("body")
+        .append("div")
+        .style("position", "absolute")
+        .style("z-index", "10")
+        .style("visibility", "hidden");
+
       var x = d3.scaleBand()
         .rangeRound([0, width])
         .padding(0.1);
@@ -37,16 +65,11 @@ function renderGroupedBarChart(date) {
       var y = d3.scaleLinear()
         .rangeRound([height, 0]);
 
-      var obj = {
-        data: [4, 8, 15, 16, 23, 42],
-        speed: [100, 50, 150, 80, 40, 20]
-      };
-
-      x.domain(obj.data.map(function (d) {
+      x.domain(keys.map(function (d) {
         return d;
       }));
 
-      y.domain([0, d3.max(obj.speed, function (d) {
+      y.domain([0, d3.max(values, function (d) {
         return Number(d);
       })]);
 
@@ -62,59 +85,63 @@ function renderGroupedBarChart(date) {
       .attr("y", 6)
       .attr("dy", "0.71em")
       .attr("text-anchor", "end")
-      .text("Speed");
+      .text("Conversion Value");
 
       g.selectAll(".bar")
-      .data(obj.data)
+      .data(keys)
       .enter().append("rect")
+      .style("fill", function(d) { return color(d); })
       .attr("class", "bar")
       .attr("x", function (d) {
         return x(d);
       })
-      .data(obj.speed)
+      .data(values)
       .attr("y", function (d) {
         return y(Number(d));
       })
       .attr("width", x.bandwidth())
       .attr("height", function (d) {
         return height - y(Number(d));
+      })
+      .on("mouseover", function(){
+        return tooltip.style("visibility", "visible");
+      })
+      .on("mousemove", function(d){
+        return tooltip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px").html("<br>" + "Average Conversion Value: " + d);
+      })
+      .on("mouseout", function(){
+        return tooltip.style("visibility", "hidden");
       });
 
-        /**
-        // format the data
-        data.forEach(function(d) {
-          d.sales = +d.sales;
-        });
+      var legend = g.append("g")
+          .attr("font-family", "sans-serif")
+          .attr("font-size", 10)
+          .attr("text-anchor", "end")
+          .selectAll("g")
+          .data(keys)
+          .enter().append("g")
+          .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
-        // Scale the range of the data in the domains
-        x.domain(data.map(function(d) { return d.salesperson; }));
-        y.domain([0, d3.max(data, function(d) { return d.sales; })]);
+      legend.append("rect")
+          .attr("x", width - 19)
+          .attr("width", 19)
+          .attr("height", 19)
+          .attr("fill", color);
 
-        // append the rectangles for the bar chart
-        svg.selectAll(".bar")
-            .data(data)
-          .enter().append("rect")
-            .attr("class", "bar")
-            .attr("x", function(d) { return x(d.salesperson); })
-            .attr("width", x.bandwidth())
-            .attr("y", function(d) { return y(d.sales); })
-            .attr("height", function(d) { return height - y(d.sales); });
+      legend.append("text")
+          .attr("x", width - 24)
+          .attr("y", 9.5)
+          .attr("dy", "0.32em")
+          .text(function(d) { return d; });
 
-        // add the x Axis
-        svg.append("g")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
-
-        // add the y Axis
-        svg.append("g")
-            .call(d3.axisLeft(y));
-        ***/
+      return results;
+   
   })
-  .then(() => {
+  .then((results) => {
       $(function() {
         $('[data-toggle="datepicker"]').datepicker({
-            startDate: new Date(2018, 5, 8),
-            endDate: new Date(2018, 5, 16),
+            startDate: new Date(results.mindate),
+            endDate: new Date(results.maxdate),
             format: 'yyyy-mm-dd',
             pick: function (e) {
               renderGroupedBarChart(new Date(e.date).toISOString().slice(0,10))
@@ -123,6 +150,6 @@ function renderGroupedBarChart(date) {
       });
   })
   .catch(function(error){ 
-    return error
+    throw error
   });
 }
