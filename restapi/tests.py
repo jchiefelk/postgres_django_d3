@@ -28,23 +28,23 @@ class ClientModelTests(TestCase):
 		city_criteria_id="3434",
 		)
 	  self.assertEqual(str(clients.account_descriptive_name), clients.account_descriptive_name)  
-    self.assertEqual(str(clients.campaign_name), clients.campaign_name)
-		self.assertEqual(str(clients.campaign_status), clients.campaign_status) 
-		self.assertEqual(str(clients.customer_descriptive_name), clients.customer_descriptive_name)
-		self.assertEqual(str(clients.is_targeting_location), clients.is_targeting_location)
-		self.assertEqual(str(clients.date), clients.date)
-		self.assertEqual(str(clients.device), clients.device)
-		self.assertEqual(str(clients.location_type), clients.location_type)
-		self.assertEqual(str(clients.average_position), clients.average_position)
-		self.assertEqual(str(clients.conversions), clients.conversions)
-		self.assertEqual(str(clients.conversion_value), clients.conversion_value)
-		self.assertEqual(str(clients.interaction_types), clients.interaction_types)
-		self.assertEqual(str(clients.metro_criteria_id), clients.metro_criteria_id)
-		self.assertEqual(str(clients.most_specific_criteria_id), clients.most_specific_criteria_id)
-		self.assertEqual(str(clients.region_criteria_id), clients.region_criteria_id)
-		self.assertEqual(str(clients.city_criteria_id), clients.city_criteria_id)
+	  self.assertEqual(str(clients.campaign_name), clients.campaign_name)
+	  self.assertEqual(str(clients.campaign_status), clients.campaign_status)
+	  self.assertEqual(str(clients.customer_descriptive_name), clients.customer_descriptive_name)
+	  self.assertEqual(str(clients.is_targeting_location), clients.is_targeting_location)
+	  self.assertEqual(str(clients.date), clients.date)
+	  self.assertEqual(str(clients.device), clients.device)
+	  self.assertEqual(str(clients.location_type), clients.location_type)
+	  self.assertEqual(str(clients.average_position), clients.average_position)
+	  self.assertEqual(str(clients.conversions), clients.conversions)
+	  self.assertEqual(str(clients.conversion_value), clients.conversion_value)
+	  self.assertEqual(str(clients.interaction_types), clients.interaction_types)
+	  self.assertEqual(str(clients.metro_criteria_id), clients.metro_criteria_id)
+	  self.assertEqual(str(clients.most_specific_criteria_id), clients.most_specific_criteria_id)
+	  self.assertEqual(str(clients.region_criteria_id), clients.region_criteria_id)
+	  self.assertEqual(str(clients.city_criteria_id), clients.city_criteria_id)
 
-	def test_integer_representation(self):
+  def test_integer_representation(self):
 			clients = Clients(
 		  campaign_id=1212,
 			country_criteria_id=9090,
@@ -65,8 +65,8 @@ class ClientModelTests(TestCase):
 			self.assertEqual(int(clients.impressions), clients.impressions)
 			self.assertEqual(int(clients.interactions), clients.interactions)
 
-	def test_handler_renders_template_response(self):
-			response = self.client.get('/403/')
+  def test_handler_renders_template_response(self):
+	    response = self.client.get('/403/')
 			# Make Assertions on the response here. For example:
-			self.assertContains(respone, 'Error handler content', status_code=403)
+	    self.assertContains(respone, 'Error handler content', status_code=403)
 
