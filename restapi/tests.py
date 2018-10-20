@@ -64,3 +64,9 @@ class ClientModelTests(TestCase):
 			self.assertEqual(int(clients.video_views), clients.video_views)
 			self.assertEqual(int(clients.impressions), clients.impressions)
 			self.assertEqual(int(clients.interactions), clients.interactions)
+
+	def test_handler_renders_template_response(self):
+			response = self.client.get('/403/')
+			# Make Assertions on the response here. For example:
+			self.assertContains(respone, 'Error handler content', status_code=403)
+
