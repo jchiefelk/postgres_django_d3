@@ -1,11 +1,12 @@
-from django.test import TestCase
+from django.test import TestCase, SimpleTestCase, override_settings
 from django.conf import settings
 from django.core.management import call_command
-from restapi.models import Clients
+from django.urls import path
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse
 
 # Create your tests here.
 from restapi.models import Clients
-
 class ClientModelTests(TestCase):
 
   def test_string_represetation(self):
@@ -64,9 +65,3 @@ class ClientModelTests(TestCase):
 			self.assertEqual(int(clients.video_views), clients.video_views)
 			self.assertEqual(int(clients.impressions), clients.impressions)
 			self.assertEqual(int(clients.interactions), clients.interactions)
-
-  def test_handler_renders_template_response(self):
-	    response = self.client.get('/403/')
-			# Make Assertions on the response here. For example:
-	    self.assertContains(respone, 'Error handler content', status_code=403)
-
