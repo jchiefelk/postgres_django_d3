@@ -1,10 +1,4 @@
-from django.test import TestCase, SimpleTestCase, override_settings
-from django.conf import settings
-from django.core.management import call_command
-from django.urls import path
-from django.core.exceptions import PermissionDenied
-from django.http import HttpResponse
-
+from django.test import TestCase
 # Create your tests here.
 from restapi.models import Clients
 class ClientModelTests(TestCase):
