@@ -1,16 +1,14 @@
-Package               Version
---------------------- -------
-Django                2.1.1  
-django-cors-headers   2.4.0   
-django-webpack-loader 0.4.1  
-djangorestframework   3.8.2  
-logilab-astng         0.24.3 
-logilab-common        1.4.2  
-pip                   18.1   
-psycopg2              2.7.5  
-psycopg2-binary       2.7.5  
-pylint                0.28.0 
-pytz                  2018.5 
-setuptools            39.0.1 
-six                   1.11.0 
-virtualenv            16.0.0 
+Django==2.1.1  
+django-cors-headers==2.4.0   
+django-webpack-loader==0.4.1  
+djangorestframework==3.8.2  
+logilab-astng==0.24.3 
+logilab-common==1.4.2  
+pip==18.1   
+psycopg2==2.7.5  
+psycopg2-binary==2.7.5  
+pylint==0.28.0 
+pytz==2018.5 
+setuptools==39.0.1 
+six==1.11.0 
+virtualenv==16.0.0 
