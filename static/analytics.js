@@ -4,7 +4,7 @@ function renderGroupedBarChart(date) {
   if(date){
     url = location.href + 'api?date=' + date;
   } else {
-    url = location.href + 'api;'
+    url = location.href + 'api?date=all';
   }
   d3.selectAll("svg > *").remove(); // clear all svg elements before 
   d3.json(url,{
