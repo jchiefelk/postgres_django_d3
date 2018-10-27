@@ -1,0 +1,1 @@
+web: gunicorn postgres_django_d3.wsgi
