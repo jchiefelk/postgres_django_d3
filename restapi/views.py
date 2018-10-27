@@ -12,7 +12,7 @@ MIN_DATE = Clients.objects.aggregate(Min('date'))['date__min']
 def snippet_list(request):
  
   if request.query_params.get('date', None) is None:
-        raise Http404("Question does not exist")
+        raise Http404("Date does not exist")
 
   if request.query_params.get('date', None) == 'all':
         
