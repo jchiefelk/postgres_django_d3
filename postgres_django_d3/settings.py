@@ -23,10 +23,9 @@ FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
 SECRET_KEY = '!5uy2_^tbqrsu2i@ou(!0syo5%b)fnp*p_4qse7cn#5r*$4-_x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -85,19 +84,12 @@ WSGI_APPLICATION = 'postgres_django_d3.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
+# we only need the engine name, as heroku takes care of the rest
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB_NAME', ''),
-        'USER': os.environ.get('POSTGRES_USER', ''),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
-        'HOST': os.environ.get('POSTGRES_HOST', ''),
-        'PORT': os.environ.get('POSTGRES_PORT', ''),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -147,3 +139,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
+
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# try to load local_settings.py if it exists
+try:
+  from local_settings import *
+except Exception as e:
+  pass
