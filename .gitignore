@@ -2,6 +2,3 @@ myenv/
 .pyc
 __pycache__
 *.pyc
-local_settings.py
-
-

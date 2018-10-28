@@ -1,1 +1,1 @@
-web: gunicorn postgres_django_d3.wsgi
+web: gunicorn tomisdemo.wsgi --log-file -
