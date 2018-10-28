@@ -1,6 +1,5 @@
 from django.test import TestCase
-# Create your tests here.
-from restapi.models import Clients
+
 class ClientModelTests(TestCase):
 
   def test_string_represetation(self):

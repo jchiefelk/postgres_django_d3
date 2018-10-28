@@ -23,7 +23,7 @@ FIXTURE_DIRS = (os.path.join(BASE_DIR, 'fixtures'),)
 SECRET_KEY = '!5uy2_^tbqrsu2i@ou(!0syo5%b)fnp*p_4qse7cn#5r*$4-_x'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'postgres_django_d3.wsgi.application'
 # we only need the engine name, as heroku takes care of the rest
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('POSTGRES_DB_NAME', ''),
         'USER': os.environ.get('POSTGRES_USER', ''),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
