@@ -22,7 +22,7 @@ FIXTURE_DIRS = (
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'nb9o$8k5ig8#5cn=((6dg2ri$l@!i53_i@surt5a-ddpqtzb%!'
+SECRET_KEY = os.environ.get('SECRET_KEY', ''),
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -31,8 +31,6 @@ ALLOWED_HOSTS = [
     'localhost',
     '.herokuapp.com'
 ]
-
-
 
 # Application definition
 
