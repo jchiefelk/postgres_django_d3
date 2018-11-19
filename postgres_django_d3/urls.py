@@ -1,4 +1,4 @@
-"""postgres_django_d3 URL Configuration
+"""tomisdemo URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -14,10 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
-#from restapi import views
+from api import views
 
 urlpatterns = [
- #   url(r'^api', views.snippet_list),
-  #  url('^api/(?P<date>.+)/$', views.snippet_list),
-   # url(r'^', include('restapi.urls')),
+    url(r'^api', views.snippet_list),
+    url('^api/(?P<date>.+)/$', views.snippet_list),
+    url(r'^', include('api.urls')),
 ]

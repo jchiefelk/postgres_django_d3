@@ -1,5 +1,5 @@
 """
-WSGI config for postgres_django_d3 project.
+WSGI config for tomisdemo project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
