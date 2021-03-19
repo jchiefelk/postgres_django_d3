@@ -3,7 +3,7 @@ django>=2.1.2
 django-cors-headers==2.4.0
 django-heroku==0.3.1
 django-webpack-loader==0.4.1
-djangorestframework==3.8.2
+djangorestframework==3.11.2
 gunicorn==19.9.0
 logilab-astng==0.24.3
 logilab-common==1.4.2
